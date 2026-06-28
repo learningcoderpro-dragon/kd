@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<centre > 
+<title> Sri Venkateswara A1 Matric Higher Secondary School Feed back form</title>
+</centre>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:30px;
+}
+
+h2{
+    text-align:center;
+    color:#2c3e50;
+}
+
+h3{
+    color:#34495e;
+}
+
+input[type=text],
+input[type=email],
+input[type=date],
+select,
+textarea{
+    width:300px;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #999;
+    border-radius:5px;
+}
+
+textarea{
+    width:500px;
+}
+
+#subjects{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    margin-top:20px;
+}
+
+input[type=submit],
+input[type=reset]{
+    padding:10px 25px;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+input[type=submit]{
+    background:#3498db;
+}
+
+input[type=reset]{
+    background:#e74c3c;
+}
+
+footer{
+    text-align:center;
+    color:gray;
+    margin-top:30px;
+}
+</style>
+
+<script>
+function createFeedback(subjectList){
+
+    let html="";
+
+    for(let i=0;i<subjectList.length;i++){
+
+        html+="<h4>"+subjectList[i]+"</h4>";
+
+        html+="Rating : ";
+
+        html+="<select required>";
+        html+="<option value=''>Select Rating</option>";
+        html+="<option>5 - Excellent</option>";
+        html+="<option>4 - Very Good</option>";
+        html+="<option>3 - Good</option>";
+        html+="<option>2 - Average</option>";
+        html+="<option>1 - Poor</option>";
+        html+="</select><br>";
+
+        html+="<textarea rows='3' placeholder='Enter feedback for "+subjectList[i]+"' required></textarea><br><br>";
+    }
+
+    document.getElementById("subjects").innerHTML=html;
+}
+function showSubjects() {
+
+    var className = document.querySelector("select[name='class']").value;
+    var group = document.getElementById("group").value;
+
+    
+    if (
+        className == "1st Standard" ||
+        className == "2nd Standard" ||
+        className == "3rd Standard" ||
+        className == "4th Standard" ||
+        className == "5th Standard"
+    ) {
+
+        createFeedback([
+            "Tamil",
+            "English",
+            "Mathematics",
+            "Environmental Science"
+        ]);
+    }
+
+   
+    else if (
+        className == "6th Standard" ||
+        className == "7th Standard" ||
+        className == "8th Standard" ||
+        className == "9th Standard" ||
+        className == "10th Standard"
+    ) {
+
+        createFeedback([
+            "Tamil",
+            "English",
+            "Mathematics",
+            "Science",
+            "Social Science"
+        ]);
+    }
+
+   
+    else if (
+        className == "11th Standard" ||
+        className == "12th Standard"
+    ) {
+
+        if (group == "Maths CS") {
+
+            createFeedback([
+                "Tamil",
+                "English",
+                "Maths",
+                "Physics",
+                "Chemistry",
+                "Computer Science"
+            ]);
+
+        } else if (group == "Maths Biology") {
+
+            createFeedback([
+                "Tamil",
+                "English",
+                "Maths",
+                "Physics",
+                "Chemistry",
+                "Botany",
+                "Zoology"
+            ]);
+
+        } else if (group == "Biology CS") {
+
+            createFeedback([
+                "Tamil",
+                "English",
+                "Physics",
+                "Chemistry",
+                "Biology",
+                "Computer Science"
+            ]);
+
+        } else {
+
+            document.getElementById("subjects").innerHTML = "";
+        }
+    }
+
+    else {
+
+        document.getElementById("subjects").innerHTML = "";
+    }
+}
+
+function clearSubjects(){
+
+    document.getElementById("group").value="";
+    document.getElementById("subjects").innerHTML="";
+}
+
+function submitForm(){
+
+    alert("Feedback Submitted Successfully!");
+    return false;
+}
+</script>
+
+</head>
+
+<body>
+
+
+<center>
+     <img src="school1.png"   
+         alt="Sri Venkateswara A1 Matric Higher Secondary School"
+         class="school-banner" >
+</center>
+
+<h2>Sri Venkateswara A1 Matric Higher Secondary School</h2>
+<h3 style="text-align:center;">Student Feedback Form</h3>
+<hr>
+
+<form onsubmit="return submitForm();">
+
+<h3>Student Information</h3>
+
+<label>Name</label><br>
+<input type="text" name="name" placeholder="Enter your name" required><br>
+
+<label>Roll Number</label><br>
+<input type="text" name="rollno" placeholder="Enter your roll number" required><br>
+
+<label>Gender</label><br>
+
+<input type="radio" name="gender" value="Male" required> Male
+<input type="radio" name="gender" value="Female"> Female
+<input type="radio" name="gender" value="Other"> Other
+
+<br><br>
+
+<label>Class</label><br>
+
+<select name="class" required>
+<option value="">--Select Class--</option>
+<option>1st Standard</option>
+<option>2nd Standard</option>
+<option>3rd Standard</option>
+<option>4th Standard</option>
+<option>5th Standard</option>
+<option>6th Standard</option>
+<option>7th Standard</option>
+<option>8th Standard</option>
+<option>9th Standard</option>
+<option>10th Standard</option>
+<option>11th Standard</option>
+<option>12th Standard</option>
+</select>
+
+<br>
+
+<label>Feedback applying Date</label><br>
+<input type ="Date" name ="Date" required >
+
+<h3>Group Selection</h3>
+
+<select id="group" onchange="showSubjects()" required>
+
+<option value="">--Select Group--</option>
+<option value="1st to 5th">Primary </option>
+<option value="6th to 10th">medium </option>
+<option value="Maths CS">Maths CS</option>
+<option value="Maths Biology">Maths Biology</option>
+<option value="Biology CS">Biology CS</option>
+
+</select>
+
+<h3>Dynamic Subject Feedback</h3>
+
+<div id="subjects"></div>
+
+<h3>Overall Suggestion</h3>
+
+<textarea rows="5" placeholder="Enter your overall suggestion..." required></textarea>
+
+<br><br>
+
+<input type="submit" value="Submit">
+<input type="reset" value="Reset" onclick="clearSubjects()">
+
+</form>
+
+<hr>
+
+<footer>
+Developed by Sri Venkateswara A1 Matric Secondary School Nathakkarai
+</footer>
+
+</body>
+</html>
